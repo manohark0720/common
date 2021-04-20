@@ -1,0 +1,38 @@
+public boolean validateTime(String time) throws ParseException {
+
+		SimpleDateFormat displayFormat = new SimpleDateFormat("HH:mma");
+		SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mma");
+		Date date = parseFormat.parse(time.toUpperCase());
+		String inputTime = displayFormat.format(date);
+
+		String startTime = "08:00AM";
+		Date time1 = new SimpleDateFormat("hh:mma").parse(startTime);
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.setTime(time1);
+		calendar1.add(Calendar.DATE, 1);
+
+		String endTime = "17:30PM";
+		Date time2 = new SimpleDateFormat("hh:mma").parse(endTime);
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.setTime(time2);
+		calendar2.add(Calendar.DATE, 1);
+
+		Date d = new SimpleDateFormat("hh:mma").parse(inputTime);
+		Calendar calendar3 = Calendar.getInstance();
+		calendar3.setTime(d);
+		calendar3.add(Calendar.DATE, 1);
+
+		Date x = calendar3.getTime();
+		if (x.after(calendar1.getTime()) && x.before(calendar2.getTime())) {
+			return true;
+		}
+		return false;
+
+	}
+ 
+ 
+ call this method like this :
+ validateTime("12:00pm");
+ 
+  
+  
